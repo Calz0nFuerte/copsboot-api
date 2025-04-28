@@ -1,71 +1,37 @@
-<<<<<<< HEAD
 package com.example.copsboot.user;
 
-import java.util.Set;
-import java.util.UUID;
+import com.example.orm.jpa.AbstractEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
-public class User {
-    private UUID id;
+@Entity
+@Table(name = "copsboot_user")
+public class User extends AbstractEntity<UserId> {
+
     private String email;
-    private String password;
-    private Set<UserRole> roles;
+    private AuthServerId authServerId; //<.>
+    private String mobileToken; //<.>
 
-    public User(UUID id, String email, String password, Set<UserRole> roles) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
+    protected User() {
+
     }
 
-    public UUID getId() {
-        return id;
+    public User(UserId id, String email, AuthServerId authServerId, String mobileToken) { //<.>
+        super(id);
+        this.email = email;
+        this.authServerId = authServerId;
+        this.mobileToken = mobileToken;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public String getPassword() {
-        return password;
+    public AuthServerId getAuthServerId() { //<.>
+        return authServerId;
     }
 
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
-}
-=======
-package com.example.copsboot.user;
-
-import java.util.Set;
-import java.util.UUID;
-
-public class User {
-    private UUID id;
-    private String email;
-    private String password;
-    private Set<UserRole> roles;
-
-    public User(UUID id, String email, String password, Set<UserRole> roles) {
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Set<UserRole> getRoles() {
-        return roles;
+    public String getMobileToken() {
+        return mobileToken;
     }
 }
->>>>>>> 15a875795c521f90a90bc333929174567ad64411
